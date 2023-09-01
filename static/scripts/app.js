@@ -1,7 +1,9 @@
-import log from "./modules/logger.js";
+import log from "./modules/log.js";
+import { getNewAudioContext } from './modules/audio.js';
 
 function main() {
-  log('main() function');
+  const context = getNewAudioContext();
+  log({context});
 }
 
 main();
