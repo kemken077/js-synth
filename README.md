@@ -1,0 +1,2 @@
+# js-synth
+Web synthesiser
