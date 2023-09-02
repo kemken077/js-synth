@@ -20,3 +20,14 @@ export function mapVolumeControls(masterVolume) {
   };
   volumeControlElement.addEventListener(EVENT_TYPES.input, changeVolume);
 }
+
+export function setWaveforms() {
+  const waveforms = document.getElementsByName('waveform');
+  let waveform;
+  for (let i = 0; i < waveforms.length; i++) {
+    if (waveforms[i].checked) {
+      waveform = waveforms[i].value;
+    }
+  }
+  return waveforms;
+}
