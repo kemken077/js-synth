@@ -15,7 +15,8 @@ export function connectMasterVolume(context) {
 
 export function mapVolumeControls(masterVolume) {
   const volumeControlElement = document.getElementById('volume-control');
-  volumeControlElement.addEventListener(EVENT_TYPES.input, function() {
+  const changeVolume = () => {
     masterVolume.gain.value = this.value;
-  });
+  };
+  volumeControlElement.addEventListener(EVENT_TYPES.input, changeVolume);
 }
