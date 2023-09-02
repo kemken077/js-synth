@@ -29,9 +29,8 @@ export function setWaveforms() {
       waveform = waveforms[i].value;
     }
   }
-  return waveforms;
-}
-
-export function createOsc(context) {
-  return context.createOscillator();
+  return {
+    waveforms,
+    waveform,
+  };
 }

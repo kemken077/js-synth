@@ -4,3 +4,11 @@ export const EVENT_TYPES = {
   change: 'change',
   domContentLoaded: 'DOMContenteLoaded',
 };
+
+export const WAVE_FORMS = {
+  sine: 'sine',
+  square: 'square',
+  triangle: 'triangle',
+  triangle: 'triangle',
+  sawtooth: 'sawtooth',
+};
