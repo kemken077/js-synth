@@ -43,8 +43,8 @@ function main() {
 
   waveforms.forEach((waveInput) => {
     waveInput.addEventListener(EVENT_TYPES.change, () => {
-      const { waveform } = setWaveforms();
       if (OSCILLATORS.currentOscillator) {
+        const { waveform } = setWaveforms();
         OSCILLATORS.currentOscillator.setWaveformType(waveform);
       }
     });
