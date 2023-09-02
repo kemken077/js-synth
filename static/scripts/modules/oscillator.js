@@ -27,8 +27,4 @@ export default class oscillator {
     this.osc.type = waveformType;
   }
 
-  delete() {
-    delete this.osc;
-  }
-
 }
