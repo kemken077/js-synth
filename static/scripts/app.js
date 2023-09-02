@@ -14,4 +14,6 @@ function main() {
   log({context, masterVolume});
 }
 
-main();
+window.addEventListener('DOMContentLoaded', () => {
+  main();
+});
