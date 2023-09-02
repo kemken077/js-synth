@@ -15,8 +15,8 @@ export function connectMasterVolume(context) {
 
 export function mapVolumeControls(masterVolume) {
   const volumeControlElement = document.getElementById('volume-control');
-  const changeVolume = () => {
-    masterVolume.gain.value = this.value;
+  const changeVolume = (event) => {
+    masterVolume.gain.value = event.target.value;
   };
   volumeControlElement.addEventListener(EVENT_TYPES.input, changeVolume);
 }
@@ -30,4 +30,8 @@ export function setWaveforms() {
     }
   }
   return waveforms;
+}
+
+export function createOsc(context) {
+  return context.createOscillator();
 }
