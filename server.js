@@ -45,7 +45,7 @@ http.createServer(async (req, res) => {
   const mimeType = MIME_TYPES[file.ext] || MIME_TYPES.default;
   res.writeHead(statusCode, { 'Content-Type': mimeType });
   file.stream.pipe(res);
-  console.log(`${req.method} ${req.url} ${req.statusCode}`);
+  console.log(`[${req.method}] to ${req.url} status code: ${statusCode}`);
 }).listen(PORT);
 
 console.log(`Server running at port -> :${PORT}`);
