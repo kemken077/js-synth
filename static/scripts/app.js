@@ -27,8 +27,12 @@ function main() {
   };
 
   UI_ELEMENTS.START.addEventListener(EVENT_TYPES.click, () => {
-    OSCILLATORS.currentOscillator = createOscillator(context, waveform);
-    OSCILLATORS.currentOscillator.start(0);
+    if (OSCILLATORS.currentOscillator) {
+      console.warn('Sound already started');
+    } else {
+      OSCILLATORS.currentOscillator = createOscillator(context, waveform);
+      OSCILLATORS.currentOscillator.start(0);
+    }
   });
 
   UI_ELEMENTS.STOP.addEventListener(EVENT_TYPES.click, () => {
