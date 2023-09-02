@@ -30,7 +30,8 @@ function main() {
     if (OSCILLATORS.currentOscillator) {
       console.warn('Sound already started');
     } else {
-      OSCILLATORS.currentOscillator = createOscillator(context, waveform);
+      const selectedWaveform = setWaveforms();
+      OSCILLATORS.currentOscillator = createOscillator(context, selectedWaveform.waveform);
       OSCILLATORS.currentOscillator.start(0);
     }
   });
@@ -43,7 +44,9 @@ function main() {
   waveforms.forEach((waveInput) => {
     waveInput.addEventListener(EVENT_TYPES.change, () => {
       const { waveform } = setWaveforms();
-      OSCILLATORS.currentOscillator.setWaveformType(waveform);
+      if (OSCILLATORS.currentOscillator) {
+        OSCILLATORS.currentOscillator.setWaveformType(waveform);
+      }
     });
   });
 
