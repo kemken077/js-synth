@@ -9,7 +9,6 @@ import oscillator from "./modules/oscillator.js";
 import { EVENT_TYPES, UI_ELEMENTS } from "./modules/utils.js";
 
 function main() {
-
   const context = getNewAudioContext();
   const masterVolume = connectMasterVolume(context);
   mapVolumeControls(masterVolume);
