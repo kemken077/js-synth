@@ -20,17 +20,13 @@ export function mapVolumeControls(masterVolume) {
   UI_ELEMENTS.VOLUME.addEventListener(EVENT_TYPES.input, changeVolume);
 }
 
-// TODO: REFACTOR
-export function setWaveforms() {
+export function getWaveform() {
   const waveforms = UI_ELEMENTS.WAVE_FORMS;
-  let waveform;
+  let waveform = '';
   for (let i = 0; i < waveforms.length; i++) {
     if (waveforms[i].checked) {
       waveform = waveforms[i].value;
     }
   }
-  return {
-    waveforms,
-    waveform,
-  };
+  return waveform;
 }
