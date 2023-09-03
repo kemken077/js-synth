@@ -21,7 +21,7 @@ function main() {
     osc.connectToMasterVolume(masterVolume);
     osc.setWaveformType(waveform);
     return osc;
-  }
+  };
   let OSCILLATORS = {
     currentOscillator: null,
   };
