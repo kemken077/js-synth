@@ -12,7 +12,7 @@ function main() {
   const context = getNewAudioContext();
   const masterVolume = connectMasterVolume(context);
   mapVolumeControls(masterVolume);
-  const { waveforms, waveform } = setWaveforms();
+  const { waveforms } = setWaveforms();
 
   const createOscillator = (context, waveform) => {
     const osc = new oscillator(context, waveform);
