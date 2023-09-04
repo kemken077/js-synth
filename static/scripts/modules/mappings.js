@@ -1,4 +1,4 @@
-import { getWaveform, createOscillator }  from './audio.js';
+import { getWaveform, createOscillator, doesOscillatorExists }  from './audio.js';
 import envelope from './envelope.js';
 import { EVENT_TYPES, UI_ELEMENTS } from "./utils.js";
 
@@ -6,14 +6,10 @@ let OSCILLATORS = {
   currentOscillator: null,
 };
 
-const doesOscillatorExists = () => {
-  return OSCILLATORS.currentOscillator;
-}
-
 export function soundOnAndOff(context, masterVolume, synthEnvelope) {
   // UI
   UI_ELEMENTS.START.addEventListener(EVENT_TYPES.click, () => {
-    if (doesOscillatorExists()) {
+    if (doesOscillatorExists(OSCILLATORS.currentOscillator)) {
       console.warn('Sound already started');
     } else {
       const selectedWaveform = getWaveform();
@@ -23,7 +19,7 @@ export function soundOnAndOff(context, masterVolume, synthEnvelope) {
   });
 
   UI_ELEMENTS.STOP.addEventListener(EVENT_TYPES.click, () => {
-    if (doesOscillatorExists()) {
+    if (doesOscillatorExists(OSCILLATORS.currentOscillator)) {
       OSCILLATORS.currentOscillator.stop(0);
       delete OSCILLATORS.currentOscillator;
       console.warn('Sound stopped.')

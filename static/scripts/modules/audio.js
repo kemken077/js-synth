@@ -39,4 +39,8 @@ export function createOscillator(context, waveform, masterVolume, synthEnvelope 
 
   osc.setWaveformType(waveform);
   return osc;
-};
+}
+
+export function doesOscillatorExists (oscillatorInstance) {
+  return oscillatorInstance;
+}
