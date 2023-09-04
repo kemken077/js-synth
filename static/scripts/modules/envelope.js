@@ -20,5 +20,13 @@ export default class envelope {
     });
   }
 
+  getNewNoteGain(context) {
+    const noteGain = context.createGain();
+    noteGain.gain.setValueAtTime(0, 0);
+    noteGain.gain.linearRampToValueAtTime(this.sustainLevel, context.currentTime + this.attackTime);
+    noteGain.gain.setValueAtTime(this.sustainLevel, context.currentTime + 1 - this.releaseTime);
+    noteGain.gain.linearRampToValueAtTime(0, context.currentTime + 1);
+    return noteGain;
+  }
 
 }

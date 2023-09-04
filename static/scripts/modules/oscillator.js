@@ -11,8 +11,8 @@ export default class oscillator {
     this.frequency.setValueAtTime(value, startTime);
   }
 
-  connectToMasterVolume(masterVolume) {
-    this.osc.connect(masterVolume);
+  connectTo(gain) {
+    this.osc.connect(gain);
   }
 
   start(when = 0) {

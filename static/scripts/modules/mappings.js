@@ -1,15 +1,6 @@
-import { getWaveform }  from './audio.js';
+import { getWaveform, createOscillator }  from './audio.js';
 import envelope from './envelope.js';
-import oscillator from "./oscillator.js";
 import { EVENT_TYPES, UI_ELEMENTS } from "./utils.js";
-
-const createOscillator = (context, waveform, masterVolume) => {
-  const osc = new oscillator(context, waveform);
-  osc.setFrequencyValueAtTime(220, 0);
-  osc.connectToMasterVolume(masterVolume);
-  osc.setWaveformType(waveform);
-  return osc;
-};
 
 let OSCILLATORS = {
   currentOscillator: null,
@@ -19,14 +10,14 @@ const doesOscillatorExists = () => {
   return OSCILLATORS.currentOscillator;
 }
 
-export function playPauseControls(context, masterVolume) {
+export function soundOnAndOff(context, masterVolume, synthEnvelope) {
   // UI
   UI_ELEMENTS.START.addEventListener(EVENT_TYPES.click, () => {
     if (doesOscillatorExists()) {
       console.warn('Sound already started');
     } else {
       const selectedWaveform = getWaveform();
-      OSCILLATORS.currentOscillator = createOscillator(context, selectedWaveform, masterVolume);
+      OSCILLATORS.currentOscillator = createOscillator(context, selectedWaveform, masterVolume, synthEnvelope);
       OSCILLATORS.currentOscillator.start(0);
     }
   });
@@ -35,6 +26,7 @@ export function playPauseControls(context, masterVolume) {
     if (doesOscillatorExists()) {
       OSCILLATORS.currentOscillator.stop(0);
       delete OSCILLATORS.currentOscillator;
+      console.warn('Sound stopped.')
     }
   });
 }
@@ -63,7 +55,6 @@ export function envelopeControls(attackElementQuery, releaseElementQuery) {
     releaseElementQuery
   };
   let newEnv = new envelope(opt);
-  console.log({newEnv});
 
   return newEnv;
 }

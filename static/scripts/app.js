@@ -6,7 +6,7 @@ import {
 import { EVENT_TYPES } from "./modules/utils.js";
 import {
   volumeControls,
-  playPauseControls,
+  soundOnAndOff,
   waveformSelection,
   envelopeControls,
 } from "./modules/mappings.js";
@@ -14,10 +14,12 @@ import {
 function main() {
   const context = getNewAudioContext();
   const masterVolume = connectMasterVolume(context);
+  const env = envelopeControls('#attack-control', '#release-control');
   volumeControls(masterVolume);
-  playPauseControls(context, masterVolume);
+  soundOnAndOff(context, masterVolume, env);
   waveformSelection();
-  envelopeControls('#attack-control', '#release-control');
+
+
 
 
   log({

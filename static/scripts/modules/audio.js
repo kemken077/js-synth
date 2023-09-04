@@ -1,4 +1,5 @@
 import { UI_ELEMENTS } from "./utils.js";
+import oscillator from "./oscillator.js";
 
 export function getNewAudioContext() {
   let AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -23,3 +24,19 @@ export function getWaveform() {
   }
   return waveform;
 }
+
+export function createOscillator(context, waveform, masterVolume, synthEnvelope = null) {
+  const osc = new oscillator(context, waveform);
+  osc.setFrequencyValueAtTime(220, 0);
+
+  if (synthEnvelope) {
+    const envGain = synthEnvelope.getNewNoteGain(context);
+    osc.connectTo(envGain);
+    envGain.connect(masterVolume);
+  } else { // with no envelope passed in.
+    osc.connectTo(masterVolume);
+  }
+
+  osc.setWaveformType(waveform);
+  return osc;
+};
