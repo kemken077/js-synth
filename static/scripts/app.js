@@ -4,7 +4,6 @@ import {
   connectMasterVolume,
   mapVolumeControls,
  } from './modules/audio.js';
-import oscillator from "./modules/oscillator.js";
 import { EVENT_TYPES } from "./modules/utils.js";
 import Mappings from "./modules/mappings.js";
 

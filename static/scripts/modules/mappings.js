@@ -14,12 +14,14 @@ let OSCILLATORS = {
   currentOscillator: null,
 };
 
-
+const doesOscillatorExists = () => {
+  return OSCILLATORS.currentOscillator;
+}
 
 function playPauseControls(context, masterVolume) {
   // UI
   UI_ELEMENTS.START.addEventListener(EVENT_TYPES.click, () => {
-    if (OSCILLATORS.currentOscillator) {
+    if (doesOscillatorExists()) {
       console.warn('Sound already started');
     } else {
       const selectedWaveform = getWaveform();
@@ -29,8 +31,10 @@ function playPauseControls(context, masterVolume) {
   });
 
   UI_ELEMENTS.STOP.addEventListener(EVENT_TYPES.click, () => {
-    OSCILLATORS.currentOscillator.stop(0);
-    delete OSCILLATORS.currentOscillator;
+    if (doesOscillatorExists()) {
+      OSCILLATORS.currentOscillator.stop(0);
+      delete OSCILLATORS.currentOscillator;
+    }
   });
 }
 
