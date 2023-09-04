@@ -2,21 +2,23 @@ import log from "./modules/log.js";
 import {
   getNewAudioContext,
   connectMasterVolume,
-  mapVolumeControls,
  } from './modules/audio.js';
 import { EVENT_TYPES } from "./modules/utils.js";
-import Mappings from "./modules/mappings.js";
+import {
+  volumeControls,
+  playPauseControls,
+  waveformSelection,
+  envelopeControls,
+} from "./modules/mappings.js";
 
 function main() {
   const context = getNewAudioContext();
   const masterVolume = connectMasterVolume(context);
-  mapVolumeControls(masterVolume);
+  volumeControls(masterVolume);
+  playPauseControls(context, masterVolume);
+  waveformSelection();
+  envelopeControls('#attack-control', '#release-control');
 
-
-  // UI
-  Mappings.playPauseControls(context, masterVolume);
-  Mappings.waveformSelection();
-  // END UI.
 
   log({
     context,

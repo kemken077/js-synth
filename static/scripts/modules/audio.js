@@ -1,4 +1,4 @@
-import { EVENT_TYPES, UI_ELEMENTS } from "./utils.js";
+import { UI_ELEMENTS } from "./utils.js";
 
 export function getNewAudioContext() {
   let AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -11,13 +11,6 @@ export function connectMasterVolume(context) {
   masterVolume.connect(context.destination);
   masterVolume.gain.value = .1;
   return masterVolume;
-}
-
-export function mapVolumeControls(masterVolume) {
-  const changeVolume = (event) => {
-    masterVolume.gain.value = event.target.value;
-  };
-  UI_ELEMENTS.VOLUME.addEventListener(EVENT_TYPES.input, changeVolume);
 }
 
 export function getWaveform() {

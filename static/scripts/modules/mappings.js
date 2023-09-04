@@ -1,4 +1,5 @@
 import { getWaveform }  from './audio.js';
+import envelope from './envelope.js';
 import oscillator from "./oscillator.js";
 import { EVENT_TYPES, UI_ELEMENTS } from "./utils.js";
 
@@ -18,7 +19,7 @@ const doesOscillatorExists = () => {
   return OSCILLATORS.currentOscillator;
 }
 
-function playPauseControls(context, masterVolume) {
+export function playPauseControls(context, masterVolume) {
   // UI
   UI_ELEMENTS.START.addEventListener(EVENT_TYPES.click, () => {
     if (doesOscillatorExists()) {
@@ -38,7 +39,7 @@ function playPauseControls(context, masterVolume) {
   });
 }
 
-function waveformSelection() {
+export function waveformSelection() {
   UI_ELEMENTS.WAVE_FORMS.forEach((waveInput) => {
     waveInput.addEventListener(EVENT_TYPES.change, () => {
       if (OSCILLATORS.currentOscillator) {
@@ -49,10 +50,20 @@ function waveformSelection() {
   });
 }
 
-let Mappings = {};
-Mappings = {
-  playPauseControls,
-  waveformSelection,
-};
+export function volumeControls(masterVolume) {
+  const changeVolume = (event) => {
+    masterVolume.gain.value = event.target.value;
+  };
+  UI_ELEMENTS.VOLUME.addEventListener(EVENT_TYPES.input, changeVolume);
+}
 
-export default Mappings;
+export function envelopeControls(attackElementQuery, releaseElementQuery) {
+  const opt = {
+    attackElementQuery,
+    releaseElementQuery
+  };
+  let newEnv = new envelope(opt);
+  console.log({newEnv});
+
+  return newEnv;
+}

@@ -1,4 +1,4 @@
-export class CustomElement extends HTMLElement {
+export default class CustomElement extends HTMLElement {
   constructor(tagname) {
     super();
     this.tagname = tagname;
@@ -21,6 +21,3 @@ export class CustomElement extends HTMLElement {
     document.querySelector(this.tagname).addEventListener(event, fn);
   }
 }
-
-
-
