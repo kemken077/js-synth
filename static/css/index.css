@@ -3,3 +3,12 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto Slab', serif;
 }
+
+button {
+  width: 120px;
+  height: 120px;
+}
+
+section {
+  border: 1px dotted red;
+}
